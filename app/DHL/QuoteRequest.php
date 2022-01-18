@@ -51,14 +51,10 @@ class QuoteRequest
 
         switch ($data['type']) {
             case 'Doc':
-                // $BkgDetails->QtdShp->GlobalProductCode = 'D';
-                // $BkgDetails->QtdShp->LocalProductCode = 'D';
                 $BkgDetails->IsDutiable = 'N';
                 unset($xml->GetQuote->Dutiable);
                 break;
             case 'Non-Doc':
-                // $BkgDetails->QtdShp->GlobalProductCode = 'P';
-                // $BkgDetails->QtdShp->LocalProductCode = 'P';
                 $BkgDetails->IsDutiable = 'Y';
                 $Dutiable->DeclaredCurrency = $data['customs_declaration']['declared_currency'];
                 $Dutiable->DeclaredValue = $data['customs_declaration']['declared_value'];
@@ -71,19 +67,10 @@ class QuoteRequest
             $$key->City = $data[$address]['city'];
         }
 
-        // echo '<pre>';
-        // print_r($xml->Request->ServiceHeader->MessageTime);
-
-        // echo $xml->asXML();
         $xml = str_replace(array('<DCTRequest ', '</DCTRequest>'), array('<p:DCTRequest ', '</p:DCTRequest>'), $xml->asXML());
-        // echo $xml;exit();
+        
         return $xml;
-        // echo $xml;
-        // echo '</pre>';
-        // exit();
     }
-
-
 }
 
 ?>
